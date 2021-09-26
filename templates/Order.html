@@ -1,0 +1,121 @@
+<html>
+    <head>
+        <title>
+            Order
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <style>
+            body{
+              background-color: #FFA500;
+            }
+          </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+                <!-- Brand/logo -->
+              <li class="nav-item dropdown">
+                <a class="navbar-brand" href="#" id="navbardrop" data-toggle="dropdown">
+                  Pomato
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Orders</a>
+                  <a class="dropdown-item" href="/update/User" >Update profile</a>
+                  <a class="dropdown-item" href="/" >Logout</a>
+                </div>
+              </li>
+              
+              <!-- Links -->
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/User/main">All menus</a>
+                  </li>
+              </ul>
+              <!-- <form class="form-inline" action="/Restaurant/Search/food" method="POST" style="padding-left: 650px;">
+                <input type="text" class="form-control mr-sm-2" id="" placeholder="Search" name="name">
+                <button type="submit" class="btn btn-light mr-sm-2">Search</button>
+              </form> -->
+            </nav>
+                
+            <form action="/confirm/order" method="post" >
+                <div class="container" style="padding-top: 70px;">
+                    <div class="row bg-light">
+                        <div class="col-2"></div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <center>
+                                        <h4>
+                                            {{rest[0]['Food Name']}}
+                                        </h4>
+                                    </center>
+                                </div>
+                                <div class="card-body" >
+                                    <div style="background-color: rgb(235, 233, 233);">
+                                        <center>
+                                            <img style="padding-top: 5px;" src="/static/{{rest[0]['File']}}" class="rounded" alt="{{rest[0]['Food Name']}}" width="300" height="190">
+                                            <a href="/FOODS/{{rest[1]['email']}}">
+                                            <strong style="padding: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">{{rest[1]['Restaurant']}}</strong>
+                                            </a>
+                                        </center>
+                                      </div>
+                                      <table>
+                                          <tr>
+                                              <td> <strong>Price : </strong>
+                                            </td>
+                                            <td>
+                                                <p id="prc" style="padding-top: 15px;"> {{rest[0]['Food Price']}}</p>
+                                            </td>
+                                        </tr>
+                                        <td>
+                                            <input type="number" id="quantity" value="1" min="1" max="6" class="form-control" onchange="Priceshow()" name="quantity">
+                                        </td>
+                                        <td>
+                                            <div style="padding-left: 120px;">
+                                                <button type="submit" class="btn btn-primary btn-block">Confirm</button>
+                                            </div>
+                                        </td>
+                                      </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <center>
+                                <h5>Delevery Address</h5>
+                            </center>
+                            <textarea name="DelAdd" id="" class="form-control" cols="30" rows="6">{{usr['Name']}},
+{{usr['contact']}},
+{{usr['area']}},
+{{usr['Talluk']}},
+{{usr['dist']}},
+{{usr['pin']}}
+                            </textarea>
+                            <br>
+                            Order id : {{rest[2]}} <br>
+                            Ordered date and time : {{d}} <br>
+                            From : {{rest[1]['Restaurant']}} <br>
+                            Contact : {{rest[1]['contact']}} <br>
+                            {{rest[1]['area']}},  {{rest[1]['Talluk']}} <br>
+                            {{rest[1]['dist']}}, <br>
+                            {{rest[1]['state']}}, <br>
+                            {{rest[1]['pin']}}
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
+    <script>
+        function Priceshow(){
+            var v= "{{rest[0]['Food Price']}}".split("/")[0];
+            q=document.getElementById("quantity").value;
+            document.getElementById("prc").innerHTML=(v*q)+"/-Rs";
+        }
+    </script>
+</html>

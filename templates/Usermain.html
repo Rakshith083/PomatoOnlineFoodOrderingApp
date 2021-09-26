@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <title>
+            User Main
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <style>
+            body{
+              background-color: #FFA500;
+            }
+          </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+                <!-- Brand/logo -->
+              <li class="nav-item dropdown">
+                <a class="navbar-brand" href="#" id="navbardrop" data-toggle="dropdown">
+                  Pomato
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/user/all/orders">Orders</a>
+                  <a class="dropdown-item" href="/update/User" >Update profile</a>
+                  <a class="dropdown-item" href="/" >Logout</a>
+                </div>
+              </li>
+              
+              <!-- Links -->
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/User/main">All menus</a>
+                  </li>
+              </ul>
+              <!-- <form class="form-inline" action="/Restaurant/Search/food" method="POST" style="padding-left: 650px;">
+                <input type="text" class="form-control mr-sm-2" id="" placeholder="Search" name="name">
+                <button type="submit" class="btn btn-light mr-sm-2">Search</button>
+              </form> -->
+            </nav>
+            <div style="background-color: rgb(235, 233, 233);">
+                <center>
+                    <h2 style="padding-top: 15px; padding-bottom: 15px;">
+                                    {{top}}
+                                </h2>
+                </center>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {% for i in chunks %}
+                    <div class="col-4">
+                    {% for j in i %}
+                        <div class="card" style="box-shadow: 2px 5px 9px #888888;">
+                            <div class="card-header">
+                                <center>
+                                    <h4>
+                                        {{j["Food Name"]}}
+                                    </h4>
+                                </center>
+                            </div>
+                            <div class="card-body">
+                                  <div style="background-color: rgb(235, 233, 233);">
+                                    <center>
+                                        <img style="padding-top: 5px;" src="/static/{{j['File']}}" class="rounded" alt="{{j['Food Name']}}" width="300" height="190">
+                                        <a href="/FOODS/{{j['email']}}">
+                                        <strong style="padding: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">{{j['Restaurant']}}</strong>
+                                        </a>
+                                    </center>
+                                  </div><br>
+                                  <table>
+                                      <tr>
+                                          <td>
+                                            <strong>
+                                                Price : 
+                                              </strong>
+                                          </td>
+                                          <td>
+                                            {{j['Food Price']}}
+                                          </td>
+                                          <td>
+                                            <div style="padding-left: 120px;">
+                                                <a href="/order/{{j['email']}}/{{j['Food Name']}}">
+                                                    <button class="btn btn-primary" >Order</button>
+                                                </a>
+                                            </div>
+                                          </td>
+                                      </tr>
+                                  </table>
+                                  <!-- <table>
+                                      <tr>
+                                          <td>
+                                              <input type="number" class="form-control" min=1 max=6 value="1" >
+                                          </td>
+                                          <td>
+                                              <div style="padding-left: 10px;">
+                                                <a href="/{{j['email']}}/{{j['Food Name']}}">
+                                                    <button class="btn btn-primary" >Add</button></a>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                  </table> -->
+                            </div>
+                    </div><hr>
+                    {% endfor %}
+                    </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

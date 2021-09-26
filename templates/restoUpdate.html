@@ -1,0 +1,434 @@
+<html>
+    <head>
+        <title>
+            Restorant main
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <style>
+            body{
+              background-color: #FFA500;
+            }
+          </style>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+              <!-- Brand/logo -->
+            <li class="nav-item dropdown">
+              <a class="navbar-brand" href="#" id="navbardrop" data-toggle="dropdown">
+                Pomato
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/" >Logout</a>
+              </div>
+            </li>
+            
+            <!-- Links -->
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  Items
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/Restaurant/{{email}}/Available" >Available</a>
+                  <a class="dropdown-item" href="/Restaurant/{{email}}/Unavailable">Unavailable</a>
+                  <a class="dropdown-item" href="/Restaurant/main">All</a>
+                </div>
+              </li>
+                
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                      New menu item
+                    </a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#" onclick="AddSIngle()">Single item</a>
+                      <a class="dropdown-item" href="#" onclick="OpenMulti()">5 items at a time</a>
+                    </div>
+                  </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  Orders
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#" >New orders</a>
+                  <a class="dropdown-item" href="#">Recieved orders</a>
+                  <a class="dropdown-item" href="#">Orders out for delevery</a>
+                </div>
+              </li>
+            </ul>
+            <!-- <form class="form-inline" action="/Restaurant/Search/food" method="POST" style="padding-left: 650px;">
+              <input type="text" class="form-control mr-sm-2" id="" placeholder="Search" name="name">
+              <button type="submit" class="btn btn-light mr-sm-2">Search</button>
+            </form> -->
+          </nav>
+          
+          <div class="container-fluid">
+            <div style="background-color: rgb(235, 233, 233);">
+                <center>
+                    <h2 style="padding-top: 15px; padding-bottom: 15px;">Update Profile</h2>
+                </center>
+            </div>
+            <div class="container pt-3 md-3 " id="contntform">
+              <div class="row">
+                <div 
+           class="container"
+           style="padding-top: 20px;"
+           id="page-form"
+           >
+           <div id='next'>
+            <form action="/update/Restaurant" method="post" enctype="multipart/form-data">
+              <div class="row">
+                <div class="col-6" >
+                  <div class="card bg-light " style="padding: 25px;">
+                    <div class="card-header bg-dark text-white">
+                      <center><h4>Restaurant info</h4></center>
+                    </div>
+                    <div class="card-body">
+                      <div class="form-group pt-3 md-3">
+                        <input type="text" class="form-control" name="restName" value="{{restovals['Restaurant']}}" id="" placeholder="Restaurant name" required>
+                      </div>
+                      <div class="form-group pt-3 md-3">
+                        <input type="text" class="form-control" name="email" value="{{restovals['email']}}" placeholder="email" id=""  required>
+                      </div>
+                      <div class="form-group pt-3 md-3">
+                        <input type="text" class="form-control" name="contact" value="{{restovals['contact']}}" placeholder="Contact number" id="contact" required>
+                      </div>
+                      <div class="form-group  ">
+                        <input type="file" class="form-control" name="pic" id="image" required>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="card bg-light" style="padding: 25px;">
+                    <div class="card-header bg-dark text-white">
+                      <center>
+                        <h4>Address</h4>
+                      </center>
+                    </div>
+                    <div class="card-body">
+                      <div class="form-group">
+                        <select name="state" required class="form-control" id="statepick" size="1">
+                          <option value="" selected="selected">Select State</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <!-- <input type="text" class="form-control" name="city" placeholder="City" value="" id=""  required> -->
+                        <select name="dist" required class="form-control" id="distpick" size="1">
+                          <option value="" selected="selected">Please select State first</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                        <!-- <input type="text" class="form-control" name="dist" placeholder="District" value="" id="" required> -->
+                        <select name="loc" required class="form-control" id="localityPick" size="1">
+                          <option value="" selected="selected">Please select district first</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="area" placeholder="Area" value="{{restovals['area']}}" id="" required>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="pin" placeholder="Pincode" value="{{restovals['pin']}}" id=""  required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col-4">
+                  <button type="submit" class="btn btn-dark btn-block" onclick="return checkimg()">Update</button>
+                </div>
+                <div class="col-4">
+                  <a href="Restaurant/deregister/{{restovals['email']}}">
+                    <button type="submit" class="btn btn-dark btn-block" >Deregister</button>
+                  </a>
+                </div>
+                <div class="col-2"></div>
+              </div>
+            </form>
+           </div>
+          </div>
+              </div>
+            </div>
+            
+            <div class="container" style="padding-top: 50px; display: none;" id="SingleMenuForm">
+              <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                  <div class="card bg-light">
+                    <div class="card-header">
+                      <center><h4>Add menu</h4></center>
+                    </div>
+                    <div class="card-body">
+                      <div style="padding: 15px;">
+                      <form action="/add/single" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                          <input type="text" class="form-control" name="foodName" id="" placeholder="Food Name" required>
+                        </div>
+                        <div class="form-group">
+                          <input type="number" class="form-control" name="foodPrice" placeholder="Food Price" id="" required>
+                        </div>
+                        <div class="form-group">
+                          <input type="file" class="form-control" name="foodFile" id="" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="sel1">Select Status:</label>
+                          <select class="form-control" id="sel1" name="status">
+                            <option>Available</option>
+                            <option>Unavailable</option>
+                          </select>
+                        </div>
+                        <div class="row">
+                          <div class="col-2"></div>
+                          <div class="col-4">
+                            <button class="btn btn-dark btn-block" >Close</button>
+                          </div>
+                          <div class="col-4">
+                            <button type="submit" class="btn btn-block btn-primary" onclick="return checkimg()">Add</button>
+                          </div>
+                          <div class="col-2"></div>
+                        </div>
+                      </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3"></div>
+              </div>
+            </div>
+
+            <div class="container" style="padding-top: 5px; padding-left: 75px; display: none;" id="manyItems">
+              <div class="row">
+                <div class="card bg-light">
+                  <div class="card-header">
+                    <center><h4>Add menus</h4></center>
+                  </div>
+                  <div class="card-body" >
+                    <form action="/add/many" method="post" enctype="multipart/form-data">
+                      <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th>Food Name</th>
+                          <th>Price</th>
+                          <th>Upload File</th>
+                          <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <input type="text" class="form-control" placeholder="Food Name" required name="food1Name" id="">
+                            </td>
+                            <td>
+                              <input type="Number" class="form-control" required placeholder="Price" name="food1Price" id="">
+                            </td>
+                            <td>
+                              <input type="file" class="form-control" required name="food1File" id="">
+                            </td>
+                            <td>
+                                <select class="form-control" id="sel1" name="food1Status">
+                                  <option>Available</option>
+                                  <option>Unavailable</option>
+                                </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <input type="text" class="form-control" placeholder="Food Name" required name="food2Name" id="">
+                            </td>
+                            <td>
+                              <input type="Number" class="form-control" required placeholder="Price" name="food2Price" id="">
+                            </td>
+                            <td>
+                              <input type="file" class="form-control" required name="food2File" id="">
+                            </td>
+                            <td>
+                                <select class="form-control" id="sel1" name="food2Status">
+                                  <option>Available</option>
+                                  <option>Unavailable</option>
+                                </select>
+                            </td>
+                          </tr><tr>
+                            <td>
+                              <input type="text" class="form-control" placeholder="Food Name" required name="food3Name" id="">
+                            </td>
+                            <td>
+                              <input type="Number" class="form-control" required placeholder="Price" name="food3Price" id="">
+                            </td>
+                            <td>
+                              <input type="file" class="form-control" required name="food3File" id="">
+                            </td>
+                            <td>
+                                <select class="form-control" id="sel1" name="food3Status">
+                                  <option>Available</option>
+                                  <option>Unavailable</option>
+                                </select>
+                            </td>
+                          </tr><tr>
+                            <td>
+                              <input type="text" class="form-control" placeholder="Food Name" required name="food4Name" id="">
+                            </td>
+                            <td>
+                              <input type="Number" class="form-control" required placeholder="Price" name="food4Price" id="">
+                            </td>
+                            <td>
+                              <input type="file" class="form-control" required name="food4File" id="">
+                            </td>
+                            <td>
+                                <select class="form-control" id="sel1" name="food4Status">
+                                  <option>Available</option>
+                                  <option>Unavailable</option>
+                                </select>
+                            </td>
+                          </tr><tr>
+                            <td>
+                              <input type="text" class="form-control" placeholder="Food Name" required name="food5Name" id="">
+                            </td>
+                            <td>
+                              <input type="Number" class="form-control" required placeholder="Price" name="food5Price" id="">
+                            </td>
+                            <td>
+                              <input type="file" class="form-control" required name="food5File" id="">
+                            </td>
+                            <td>
+                                <select class="form-control" id="sel1" name="food5Status">
+                                  <option>Available</option>
+                                  <option>Unavailable</option>
+                                </select>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-3">
+                          <button class="btn btn-dark btn-block" onclick="CloseMulti()">Close</button>
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-3">
+                          <button type="submit" class="btn btn-block btn-primary" onclick="return checkimg()">Add</button>
+                        </div>
+                        <div class="col-2"></div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script>
+            function AddSIngle(){
+              CloseMulti();
+              document.getElementById("contntform").style.display="none";
+              
+              document.getElementById("SingleMenuForm").style.display="block";
+            }
+            function closeSIngle(){
+                
+              document.getElementById("contntform").style.display="block";
+              document.getElementById("SingleMenuForm").style.display="none";
+            }
+            function OpenMulti(){
+              closeSIngle();
+              document.getElementById("contntform").style.display="none";
+              
+              document.getElementById("manyItems").style.display="block";
+            }
+            function CloseMulti(){
+                
+              document.getElementById("contntform").style.display="block";
+              document.getElementById("manyItems").style.display="none";
+            }
+            
+            function checkimg(){
+              var file=document.getElementById('image').files[0].name;
+              let x=file.split(".");
+              if (x[1]=="jpg" || x[1]=="jpeg" || x[1]=="png" ||x[1]=="webp" )
+                return true;
+              else {
+                alert("Supported image formats : jpg, jpeg, png, webp");
+                return false;
+              }
+            }
+          </script>
+          <script>
+            var stateObject = {
+            "Andhra Pradesh": {
+            }, 
+            "Goa": {
+               
+            },
+            "Karnataka": { 
+              "Bagalkot": [],
+              "Ballari (Bellary)": [],
+              "Belagavi (Belgaum)": [],
+              "Bengaluru (Bangalore) Rural": [],
+              "Bengaluru (Bangalore) Urban": [],
+              "Bidar": [],
+              "Chamarajanagar": [],
+              "Chikballapur": [],
+              "Chikkamagaluru (Chikmagalur)": [],
+              "Chitradurga": [],
+              "Dakshina Kannada": [],
+              "Davangere": [],
+              "Dharwad": [],
+              "Gadag": [],
+              "Hassan": [],
+              "Haveri": [],
+              "Kalaburagi (Gulbarga)": [],
+              "Kodagu": [],
+              "Kolar": [],
+              "Koppal": [],
+              "Mandya": [],
+              "Mysuru (Mysore)": [],
+              "Raichur": [],
+              "Ramanagara": [],
+              "Shivamogga": ["Soraba", "Sagara", "Shimoga", "Shimoga Rural", "Shikaripura", "Bhadravathi", "Thirthahalli"],
+              "Tumakuru": [],
+              "Udupi": [],
+              "UttaraKannada": [],
+              "Vijayapura (Bijapur)": [],
+              "Yadgir": [],
+            },
+            "Kerala": {
+               
+            },
+            "Maharashtra": {
+               
+            },
+            "Tamil Nadu": {
+               
+            }
+            }
+            window.onload = function () {
+            var statepick = document.getElementById("statepick"),
+            distpick = document.getElementById("distpick"),
+            localityPick = document.getElementById("localityPick");
+            for (var country in stateObject) {
+            statepick.options[statepick.options.length] = new Option(country, country);
+            }
+            statepick.onchange = function () {
+            distpick.length = 1; // remove all options bar first
+            localityPick.length = 1; // remove all options bar first
+            if (this.selectedIndex < 1) return; // done 
+            for (var state in stateObject[this.value]) {
+            distpick.options[distpick.options.length] = new Option(state, state);
+            }
+            }
+            statepick.onchange(); // reset in case page is reloaded
+            distpick.onchange = function () {
+            localityPick.length = 1; // remove all options bar first
+            if (this.selectedIndex < 1) return; // done 
+            var district = stateObject[statepick.value][this.value];
+            for (var i = 0; i < district.length; i++) {
+            localityPick.options[localityPick.options.length] = new Option(district[i], district[i]);
+            }
+            }
+            }
+            </script>
+    </body>
+</html>

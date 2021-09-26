@@ -1,0 +1,201 @@
+<html>
+    <head>
+        <title>
+            User Main
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <style>
+            body{
+              background-color: #FFA500;
+            }
+          </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+                <!-- Brand/logo -->
+              <li class="nav-item dropdown">
+                <a class="navbar-brand" href="#" id="navbardrop" data-toggle="dropdown">
+                  Pomato
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/user/all/orders">Orders</a>
+                  <a class="dropdown-item" href="/update/User" >Update profile</a>
+                  <a class="dropdown-item" href="/" >Logout</a>
+                </div>
+              </li>
+              
+              <!-- Links -->
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/User/main">All menus</a>
+                  </li>
+              </ul>
+              <!-- <form class="form-inline" action="/Restaurant/Search/food" method="POST" style="padding-left: 650px;">
+                <input type="text" class="form-control mr-sm-2" id="" placeholder="Search" name="name">
+                <button type="submit" class="btn btn-light mr-sm-2">Search</button>
+              </form> -->
+            </nav>
+            <div style="background-color: rgb(235, 233, 233);">
+                <center>
+                    <h2 style="padding-top: 15px; padding-bottom: 15px;">
+                                    Update
+                                </h2>
+                </center>
+            </div>
+            <div 
+           class="container"
+           style="padding-top: 70px;"
+           id="page-form"
+           >
+           <div id='next'>
+            <form action="/update/User" method="post" >
+              <div class="container">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="card bg-light " style="padding: 25px;">
+                      <div class="card-header bg-dark text-white">
+                        <center>
+                          <h4>User info</h4>
+                        </center>
+                      </div>
+                      <div class="card-body">
+                        <div class="form-group md-3 pt-3" >
+                          <input type="text"  name="username" placeholder="Name" value='{{res["Name"]}}' class="form-control" required id="">
+                        </div>
+                        <div class="form-group md-3 pt-3">
+                          <input type="text"  name="email" placeholder="Email" value='{{res["email"]}}' class="form-control" required readonly id="">
+                        </div>
+                        <div class="form-group md-3 pt-3">
+                          <input type="text"  name="contact" placeholder="Phone" value='{{res["contact"]}}' class="form-control" required id="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="card bg-light" style="padding: 25px;">
+                      <div class="card-header bg-dark text-white">
+                        <center>
+                          <h4>Address</h4>
+                        </center>
+                      </div>
+                      <div class="card-body">
+                        <div class="form-group">
+                          <select name="state" class="form-control" id="statepick" size="1">
+                            <option value="" selected="selected">Select State</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <!-- <input type="text" class="form-control" name="city" placeholder="City" value="" id=""  required> -->
+                          <select name="dist" class="form-control" id="distpick" size="1">
+                            <option value="" selected="selected">Please select State first</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                          <!-- <input type="text" class="form-control" name="dist" placeholder="District" value="" id="" required> -->
+                          <select name="loc" class="form-control" id="localityPick" size="1">
+                            <option value="" selected="selected">Please select district first</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                          <input type="text" class="form-control" value='{{res["area"]}}' name="area" placeholder="Hno/ Cross/ Area" value="" id="" required>
+                        </div>
+                        <div class="form-group">
+                          <input type="text" class="form-control" value='{{res["pin"]}}' name="pin" placeholder="Pincode" value="" id=""  required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><br>
+                <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4">
+                  <button type="submit" class="btn btn-dark btn-block">Update</button>
+                </div>
+                <div class="col-4"></div>
+              </div>
+            </form>
+           </div>
+          </div>
+    </body>
+    <script>
+        var stateObject = {
+        "Andhra Pradesh": {
+        }, 
+        "Goa": {
+           
+        },
+        "Karnataka": { 
+          "Bagalkot": [],
+          "Ballari (Bellary)": [],
+          "Belagavi (Belgaum)": [],
+          "Bengaluru (Bangalore) Rural": [],
+          "Bengaluru (Bangalore) Urban": [],
+          "Bidar": [],
+          "Chamarajanagar": [],
+          "Chikballapur": [],
+          "Chikkamagaluru (Chikmagalur)": [],
+          "Chitradurga": [],
+          "Dakshina Kannada": [],
+          "Davangere": [],
+          "Dharwad": [],
+          "Gadag": [],
+          "Hassan": [],
+          "Haveri": [],
+          "Kalaburagi (Gulbarga)": [],
+          "Kodagu": [],
+          "Kolar": [],
+          "Koppal": [],
+          "Mandya": [],
+          "Mysuru (Mysore)": [],
+          "Raichur": [],
+          "Ramanagara": [],
+          "Shivamogga": ["Soraba", "Sagara", "Shimoga", "Shimoga Rural", "Shikaripura", "Bhadravathi", "Thirthahalli"],
+          "Tumakuru": [],
+          "Udupi": [],
+          "UttaraKannada": [],
+          "Vijayapura (Bijapur)": [],
+          "Yadgir": [],
+        },
+        "Kerala": {
+           
+        },
+        "Maharashtra": {
+           
+        },
+        "Tamil Nadu": {
+           
+        }
+        }
+        window.onload = function () {
+        var statepick = document.getElementById("statepick"),
+        distpick = document.getElementById("distpick"),
+        localityPick = document.getElementById("localityPick");
+        for (var country in stateObject) {
+        statepick.options[statepick.options.length] = new Option(country, country);
+        }
+        statepick.onchange = function () {
+        distpick.length = 1; // remove all options bar first
+        localityPick.length = 1; // remove all options bar first
+        if (this.selectedIndex < 1) return; // done 
+        for (var state in stateObject[this.value]) {
+        distpick.options[distpick.options.length] = new Option(state, state);
+        }
+        }
+        statepick.onchange(); // reset in case page is reloaded
+        distpick.onchange = function () {
+        localityPick.length = 1; // remove all options bar first
+        if (this.selectedIndex < 1) return; // done 
+        var district = stateObject[statepick.value][this.value];
+        for (var i = 0; i < district.length; i++) {
+        localityPick.options[localityPick.options.length] = new Option(district[i], district[i]);
+        }
+        }
+        }
+        </script>
+</html>
